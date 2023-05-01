@@ -1,0 +1,215 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99;
+}
+
+.inicio {
+  font-family: 'Macondo Swash Caps', cursive;
+  font-size: 5em;
+  font-weight: bold;
+  transition: transform 500ms ease-in;
+  transform: scale(1);
+  text-align: center;
+}
+
+div {
+  position: absolute;
+  top: 60%;
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.boton1 {
+  z-index: 10;
+}
+
+.boton2,
+.boton3 {
+  transition: transform 500ms ease-in-out;
+}
+
+img {
+  width: 10vw;
+  height: auto;
+}
+.menu
+{
+  position: absolute;
+  width: 8vh;
+  height: 8vh;
+  top: 1vh;
+  left: 1vh;
+  background-color:rgba(66, 66, 66, 0.3);
+  border: solid 1px #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.line
+{
+  width: 80%;
+  height: 5%;
+  background-color: #fff;
+  transition: 0.4s;
+}
+.change .bar1 {
+  transform: translate(0, 2.5vh) rotate(-45deg);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  transform: translate(0, -2.5vh) rotate(45deg);
+}
+.sliderMenu
+{
+  z-index: 99;
+  position: absolute;
+  width: 20vw;
+  height: 90vh;
+  top: 10vh;
+  left: 0;
+  transform: scale(0);
+  transition: transform 500ms ease;
+  background-color: rgba(66, 66, 66, 0.5);
+  backdrop-filter: blur(13px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.esevege 
+{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transform-origin: center bottom;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+.menuItem
+{
+  font-size: 4vh;
+  font-family: 'Macondo Swash Caps', cursive;
+  color: #fff;
+}
+.menuItem:hover svg
+{
+    transform: scaleX(1);
+}
+.redes
+{
+  position: absolute;
+  top: 1vh;
+  right: 2vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.redes i
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
+  margin: 1vw;
+  color: transparent;
+  height: 3.4vh;
+  width: 3vh;
+  -webkit-text-stroke: .5px  white;
+  transition: color 500ms ease-in-out,background-color 500ms ease-in-out,filter 500ms ease-in-out,-webkit-text-stroke 500ms ease-in-out;
+}
+.redes i:first-child:hover
+{
+  -webkit-text-stroke: 0px  white;
+  color: #4267B2;
+  background-color: #fff;
+  filter: drop-shadow(0px 0px 30px #4267B2);
+
+}
+.redes i:nth-child(2):hover
+{
+  -webkit-text-stroke: 0px  white;
+  color:#E1306C;
+  background-color:#fff;
+  filter: drop-shadow(0px 0px 30px #E1306C);
+}
+.redes i:nth-child(3):hover
+{
+  -webkit-text-stroke: 0px  white;
+  color: #25D366;
+  background-color: #fff;
+  filter: drop-shadow(0px 0px 30px #25D366);
+}
+.pie
+{
+  position: absolute;
+  height: 5vh;
+  top:95vh;
+  width: 100%;
+  right: 0;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+legend
+{
+  margin: 1vw;
+}
+
+@media screen and (max-width:430px) {
+  img
+  {
+    width: 30vw;
+  }
+  div 
+  {
+    top: 70vh;
+  }
+  .sliderMenu
+  {
+    width: 100vw;
+  }
+  .menu
+  {
+    border-color: #000;
+  }
+  .line
+  {
+    background-color: #000;
+  }
+  .redes i
+  {
+    -webkit-text-stroke: .5px  black;
+  }
+  legend
+  {
+    font-size: 2.5vw;
+  }
+}

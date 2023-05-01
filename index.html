@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--ICONS-->
+    <script src="https://kit.fontawesome.com/c8bf7962f3.js" crossorigin="anonymous"></script>
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/init.css">
+    <link rel="stylesheet" type="text/css" href="css/splash.css" />
+    <!--META-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAROT</title>
+</head>
+
+<body class="cuerpo_inicio">
+    <section class="menu">
+        <label  class="line bar1"></label>
+        <label  class="line bar2"></label>
+        <label  class="line bar3"></label>
+    </section>
+    <nav class="sliderMenu">
+        <li class="menuItem">INICIO<svg class="esevege"></svg></li>
+        <li class="menuItem">QUIENES SOMOS<svg class="esevege"></svg></li>
+        <li class="menuItem">CONTACTO<svg class="esevege"></svg></li>
+    </nav>
+    <section class="redes">
+        <i class="fa-brands fa-square-facebook"></i>
+        <i class="fa-brands fa-square-instagram"></i>
+        <i class="fa-brands fa-square-whatsapp"></i>
+    </section>
+    <div class="boton1"><img src="imagenes/carta.png" alt=""></div>
+    <div class="boton2" ><img src="imagenes/carta2.png" alt=""></div>
+    <div class="boton3" ><img src="imagenes/carta3.png" alt=""></div>
+    <footer class="pie">
+        <Legend>Pagina desarrolada por <a href="">AGNIS SOLUCIONES WEB &copy;</a></Legend>
+        <Legend>&copy; TU NOMBRE 2023.</Legend>
+    </footer>
+    <script src="js/overButton.js"></script>
+    <script src="js/inicio.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/postprocessing.min.js"></script>
+    <script>
+        let scene, camera, cloudParticles = [], composer;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 1;
+            camera.rotation.x = 1.16;
+            camera.rotation.y = -0.12;
+            camera.rotation.z = 0.27;
+
+            let ambient = new THREE.AmbientLight(0x555555);
+            scene.add(ambient);
+
+            let directionalLight = new THREE.DirectionalLight(0xff8c19);
+            directionalLight.position.set(0, 0, 1);
+            scene.add(directionalLight);
+
+            let orangeLight = new THREE.PointLight(0xcc6600, 50, 450, 1.7);
+            orangeLight.position.set(200, 300, 100);
+            scene.add(orangeLight);
+            let redLight = new THREE.PointLight(0xd8547e, 50, 450, 1.7);
+            redLight.position.set(100, 300, 100);
+            scene.add(redLight);
+            let blueLight = new THREE.PointLight(0x3677ac, 50, 450, 1.7);
+            blueLight.position.set(300, 300, 200);
+            scene.add(blueLight);
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            scene.fog = new THREE.FogExp2(0x03544e, 0.001);
+            renderer.setClearColor(scene.fog.color);
+            document.body.appendChild(renderer.domElement);
+
+            let loader = new THREE.TextureLoader();
+            loader.load("imagenes/smoke.png", function (texture) {
+                cloudGeo = new THREE.PlaneBufferGeometry(500, 500);
+                cloudMaterial = new THREE.MeshLambertMaterial({
+                    map: texture,
+                    transparent: true
+                });
+
+                for (let p = 0; p < 50; p++) {
+                    let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
+                    cloud.position.set(
+                        Math.random() * 800 - 400,
+                        500,
+                        Math.random() * 500 - 500
+                    );
+                    cloud.rotation.x = 1.16;
+                    cloud.rotation.y = -0.12;
+                    cloud.rotation.z = Math.random() * 2 * Math.PI;
+                    cloud.material.opacity = 0.55;
+                    cloudParticles.push(cloud);
+                    scene.add(cloud);
+                }
+            });
+            loader.load("imagenes/stars.jpg", function (texture) {
+
+                const textureEffect = new POSTPROCESSING.TextureEffect({
+                    blendFunction: POSTPROCESSING.BlendFunction.COLOR_DODGE,
+                    texture: texture
+                });
+                textureEffect.blendMode.opacity.value = 0.2;
+
+                const bloomEffect = new POSTPROCESSING.BloomEffect({
+                    blendFunction: POSTPROCESSING.BlendFunction.COLOR_DODGE,
+                    kernelSize: POSTPROCESSING.KernelSize.SMALL,
+                    useLuminanceFilter: true,
+                    luminanceThreshold: 0.3,
+                    luminanceSmoothing: 0.75
+                });
+                bloomEffect.blendMode.opacity.value = 1.5;
+
+                let effectPass = new POSTPROCESSING.EffectPass(
+                    camera,
+                    bloomEffect,
+                    textureEffect
+                );
+                effectPass.renderToScreen = true;
+
+                composer = new POSTPROCESSING.EffectComposer(renderer);
+                composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
+                composer.addPass(effectPass);
+
+                window.addEventListener("resize", onWindowResize, false);
+                render();
+            });
+        }
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        function render() {
+            cloudParticles.forEach(p => {
+                p.rotation.z -= 0.001;
+            });
+            composer.render(0.1);
+            requestAnimationFrame(render);
+        }
+        init();
+    </script>
+    <script src="js/sliderBar.js"></script>
+</body>
+
+</html>
