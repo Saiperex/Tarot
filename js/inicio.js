@@ -51,18 +51,16 @@ boton.addEventListener("click",function()
 //Redimension
 // Obtener la altura de la barra de herramientas del navegador móvil
 let vh = window.innerHeight * 0.01;
+let navbarHeight = window.visualViewport.height - window.innerHeight;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 // Establecer la altura del cuerpo en "100vh - altura de la barra de herramientas del navegador móvil"
-document.body.style.height = `calc(100vh - ${vh}px)`;
+document.body.style.height = `calc(100vh - ${navbarHeight}px)`;
 
 // Actualizar la altura del cuerpo si la pantalla cambia de tamaño
 window.addEventListener('resize', () => {
-  if (window.innerWidth <= 430) { // Agregar una condición para que el código se ejecute solo cuando la pantalla es de 430px o menos
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    document.body.style.height = `calc(100vh - ${vh}px)`;
-  } else { // Si la pantalla es mayor a 430px, establecer la altura del cuerpo en su valor original
-    document.body.style.height = '';
-  }
+  let vh = window.innerHeight * 0.01;
+  let navbarHeight = window.visualViewport.height - window.innerHeight;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.body.style.height = `calc(100vh - ${navbarHeight}px)`;
 });
