@@ -52,5 +52,6 @@ let vvh=window.visualViewport.height;
 console.log(vvh)
 
 const navBarHeight = window.screen.height - vvh;
-alert("vh "+vh+" vvh "+vvh+" nbh "+navBarHeight)
+document.body.style.height = (vh - navBarHeight) + 'px';
+alert("vh "+vh+" vvh "+vvh+" nbh "+navBarHeight+" Y la altura final es de "+document.body.style.height)
 
