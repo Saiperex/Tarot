@@ -9,19 +9,16 @@ function crearObjeto() {
   cuerpo.appendChild(titulo);
   cont = (cont + 1) % frases.length;
   titulo.style.transform = "scale(0)";
-  
-    setTimeout(() => 
-  {
+
+  setTimeout(() => {
     titulo.style.transform = "scale(1)";
-    if(cont!=0)
-    {
-        setTimeout(() => 
-    {
-      titulo.remove();
-    }, 1000);
+    if (cont != 0) {
+      setTimeout(() => {
+        titulo.remove();
+      }, 1000);
     }
   }, 1000);
-  
+
 
   if (cont === 0) {
     clearInterval(interval);
@@ -42,9 +39,8 @@ setTimeout(() => {
   });
 }, 10000);
 
-const boton=document.querySelector(".boton1")
-boton.addEventListener("click",function()
-{
+const boton = document.querySelector(".boton1")
+boton.addEventListener("click", function () {
   window.open("../inicio.html");
 })
 
@@ -56,18 +52,18 @@ let navbarHeight = window.visualViewport.height - window.innerHeight;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 // Establecer la altura del cuerpo en "100vh - altura de la barra de herramientas del navegador móvil"
-document.body.style.height = window.innerHeight - navbarHeight+`px`
-var le=(document.body.style.height)
-alert(le)
+document.body.style.height = window.innerHeight - navbarHeight + `px`
+var le = (document.body.style.height)
 // Actualizar la altura del cuerpo si la pantalla cambia de tamaño
 
-  function barra()
-  {
-    console.log("seresizo")
-    let vh = window.innerHeight * 0.01;
+function barra() 
+{
+
+  let vh = window.innerHeight * 0.01;
   let navbarHeight = window.visualViewport.height - window.innerHeight;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
-  document.body.style.height = window.innerHeight - navbarHeight+`px`
+  document.body.style.height = window.innerHeight - navbarHeight + `px`
+  alert("el alto del vh es "+window.innerHeight+" El ancho del nav Bar es "+navbarHeight+" Y el tamaño redimensionado es "+document.body.style.height)
 }
-  barra()
+barra()
 
