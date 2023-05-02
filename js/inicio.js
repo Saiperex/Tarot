@@ -58,9 +58,14 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
 document.body.style.height = `calc(100vh - ${navbarHeight}px)`;
 
 // Actualizar la altura del cuerpo si la pantalla cambia de tamaño
-window.addEventListener('resize', () => {
-  let vh = window.innerHeight * 0.01;
+
+  function barra()
+  {
+    console.log("seresizo")
+    let vh = window.innerHeight * 0.01;
   let navbarHeight = window.visualViewport.height - window.innerHeight;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
   document.body.style.height = `calc(100vh - ${navbarHeight}px)`;
-});
+  }
+  barra()
+
