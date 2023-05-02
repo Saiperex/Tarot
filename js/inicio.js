@@ -52,6 +52,8 @@ boton.addEventListener("click",function()
 // Obtener la altura de la barra de herramientas del navegador móvil
 let vh = window.innerHeight * 0.01;
 let navbarHeight = window.visualViewport.height - window.innerHeight;
+console.log(navbarHeight)
+alert(navbarHeight)
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 // Establecer la altura del cuerpo en "100vh - altura de la barra de herramientas del navegador móvil"
