@@ -50,5 +50,7 @@ let vh = window.innerHeight;
 console.log(vh)
 let vvh=window.visualViewport.height;
 console.log(vvh)
-alert("vh "+vh+" vvh "+vvh)
+
+const navBarHeight = window.screen.height - vvh;
+alert("vh "+vh+" vvh "+vvh+" nbh "+navBarHeight)
 
